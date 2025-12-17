@@ -45,7 +45,7 @@ def guardar_puntaje_json(nombre_archivo: str, nombre: str, puntuacion: int):
     for jugador in ranking:
         if jugador["nombre"].lower() == nombre.lower():
             nombre_encontrado = True
-            # Actualizar solo si el puntaje es mayor
+            
             if puntuacion > jugador["puntuacion"]:
                 jugador["puntuacion"] = puntuacion
             break
