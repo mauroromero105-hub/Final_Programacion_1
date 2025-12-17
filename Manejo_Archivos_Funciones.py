@@ -32,7 +32,7 @@ def cargar_preguntas(nombre_archivo: str):
 def guardar_puntaje_json(nombre_archivo: str, nombre: str, puntuacion: int):
     ranking = []
 
-    # Leer archivo si existe
+
     if os.path.exists(nombre_archivo):
         with open(nombre_archivo, "r", encoding="utf-8") as archivo:
             try:
@@ -40,7 +40,7 @@ def guardar_puntaje_json(nombre_archivo: str, nombre: str, puntuacion: int):
             except json.JSONDecodeError:
                 ranking = []
 
-    # Buscar si el nombre ya existe
+    
     nombre_encontrado = False
     for jugador in ranking:
         if jugador["nombre"].lower() == nombre.lower():
@@ -50,20 +50,20 @@ def guardar_puntaje_json(nombre_archivo: str, nombre: str, puntuacion: int):
                 jugador["puntuacion"] = puntuacion
             break
 
-    # Si no existe el nombre, lo agregamos
+   
     if not nombre_encontrado:
         ranking.append({
             "nombre": nombre,
             "puntuacion": puntuacion
         })
 
-    # Ordenar de mayor a menor
+    
     ranking.sort(key=lambda x: x["puntuacion"], reverse=True)
 
-    # Mantener solo el top 10
+    
     ranking = ranking[:10]
 
-    # Guardar archivo
+    
     with open(nombre_archivo, "w", encoding="utf-8") as archivo:
         json.dump(ranking, archivo, indent=4, ensure_ascii=False)
 
